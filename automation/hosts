@@ -3,57 +3,13 @@
 #    https://github.com/cumulusnetworks/topology_converter
 #    using topology data from: byu-new.dot
 
-[leaves-building1]
-leaf01 ansible_host=192.168.200.1
-leaf02 ansible_host=192.168.200.2
-leaf03 ansible_host=192.168.200.3
-leaf04 ansible_host=192.168.200.4
+[training-switches]
+training-switch01 ansible_host=192.168.200.1
+training-switch02 ansible_host=192.168.200.2
 
-[spines-building1]
-spine01 ansible_host=192.168.200.11
-spine02 ansible_host=192.168.200.12
-
-[aruba-switches-building1]
-switch01 ansible_host=192.168.200.21
-switch02 ansible_host=192.168.200.22
-
-[routers-building1]
-router01 ansible_host=192.168.200.31
-router02 ansible_host=192.168.200.32
-
-[exits-building1]
-exit01 ansible_host=192.168.200.41
-exit02 ansible_host=192.168.200.42
-
-[internet-building1]
-internet ansible_host=192.168.200.51
-
-[servers-building1]
-server01 ansible_host=192.168.200.101
-server02 ansible_host=192.168.200.102
-server03 ansible_host=192.168.200.103
-server-dhcp ansible_host=192.168.200.104
-
-[oob]
-localhost ansible_connection=local
-
-[exits:children]
-exits-building1
-
-[spines:children]
-spines-building1
-
-[routers:children]
-routers-building1
-
-[leaves:children]
-leaves-building1
-
-[aruba-switches:children]
-aruba-switches-building1
-
-[servers:children]
-servers-building1
+[training-switches:children]
+training-switch01
+training-switch02
 
 [all:vars]
 ansible_user=cumulus

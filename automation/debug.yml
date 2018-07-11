@@ -14,4 +14,4 @@
 
    - debug:
        msg: "Uplinks: {{ item }}"
-     with_items: "{{ node[inventory_hostname].ports }}"
+     with_items: "{{ node[inventory_hostname].routing.ospf.neighbors }}"

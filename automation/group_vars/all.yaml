@@ -6,8 +6,8 @@ node:
         vni:
           vlan:
     ports:
-      swp1: {}
-      swp2: {}
+      swp1:
+      swp2:
     switching:
       interface:
         members:
@@ -38,8 +38,8 @@ node:
         vni:
           vlan:
     ports:
-      swp1: {}
-      swp2: {}
+      swp1:
+      swp2:
     switching:
       interface:
     routing:

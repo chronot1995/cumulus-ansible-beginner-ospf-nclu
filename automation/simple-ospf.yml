@@ -17,7 +17,7 @@
        description: "Initial Switch setup"
        commands:
            - add hostname "{{ inventory_hostname }}"
-           - add interface {{ node[inventory_hostname]["ports"] }}
+           - add interface {{ node[inventory_hostname][ports] }}
 
   - name: Deploy OSPF Unnumbered configuration
     nclu:

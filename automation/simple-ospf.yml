@@ -33,11 +33,20 @@
         commit: true
         description: "Deploy OSPF Unnumbered configuration"
         commands:
-            - add loopback lo ip address {{ node[inventory_hostname]["routing"]["lo"]}}
-            - add interface {{ node[inventory_hostname]["routing"]["ospf"].neighbors }} ospf network point-to-point
-            - add interface {{ node[inventory_hostname]["routing"]["ospf"].neighbors }} ip address {{ node[inventory_hostname]["routing"]["lo"] }}
-            - add ospf router-id {{ node[inventory_hostname]["routing"]["lo"] }}
-            - add ospf network {{ node[inventory_hostname]["routing"]["lo"] }} area {{ node[inventory_hostname]["routing"]["ospf"]["area"] }}
+            - add loopback lo ip address {{ node[inventory_hostname].routing.lo}}
+            - add ospf router-id {{ node[inventory_hostname].routing.lo }}
+            - add ospf network {{ node[inventory_hostname].routing.lo }} area {{ node[inventory_hostname].routing.ospf.area }}
+
+  - name: Deploy OSPF Unnumbered Interfaces
+    nclu:
+        commit: true
+        description: "Deploy OSPF Unnumbered Interfaces"
+        template: |
+           add interface {{ item }} ospf network point-to-point
+           add interface {{ item }} ip address {{ node[inventory_hostname].routing.lo }}
+        with_items:
+                - "{{ node[inventory_hostname].routing.ospf.neighbors }}"
+        when: node[inventory_hostname].ports is defined
 
   - name: Reload Interfaces
     command: ifreload -a

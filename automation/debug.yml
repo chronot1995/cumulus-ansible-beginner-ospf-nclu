@@ -9,6 +9,6 @@
    - debug:
        msg: "{{ node[inventory_hostname].routing.lo }}"
 
-#   - debug:
-#       msg: "Uplinks: {{ item }}"
-#     with_items: "{{ node[inventory_hostname].ports }}"
+   - debug:
+       msg: "Uplinks: {{ item }}"
+     with_items: "{{ node[inventory_hostname].ports }}"

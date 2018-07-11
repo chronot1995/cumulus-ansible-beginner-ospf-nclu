@@ -1,5 +1,5 @@
 node:
-  training-switch01:
+  switch01:
     overlay:
       anycast-ip:
       vxlan:
@@ -31,7 +31,7 @@ node:
         vlansvi:
           ip:
           vlan:
-  training-switch02:
+  switch02:
     overlay:
       anycast-ip:
       vxlan:

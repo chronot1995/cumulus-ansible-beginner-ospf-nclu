@@ -17,17 +17,16 @@
        description: "Initial Switch setup"
        commands:
            - add hostname "{{ inventory_hostname }}"
-           - add interface {{ node[inventory_hostname]["ports"] }}
 
   - name: Deploy Interfaces
     nclu:
       commit: true
       description: "Deploy Interfaces"
       template: |
-          add interface "{{ item }}"
-      with_items:
-          - "{{ node[inventory_hostname]["ports"] }}"
-      when: {{ node[inventory_hostname]["ports"] }} is defined
+         add interface "{{ item }}"
+    with_items:
+      - "{{ node[inventory_hostname][ports] }}"
+    when: node[inventory_hostname]["ports"] is defined
 
 #  - name: Deploy OSPF Unnumbered configuration
 #    nclu:

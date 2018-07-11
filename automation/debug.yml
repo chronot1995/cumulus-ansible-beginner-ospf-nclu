@@ -1,0 +1,8 @@
+- name: Simple Debug Script
+  hosts: all
+  gather_facts: no
+
+  tasks:
+   - debug:
+       msg: "Uplinks: {{ item }}"
+     with_items: "{{ node[inventory_hostname][ports] }}"

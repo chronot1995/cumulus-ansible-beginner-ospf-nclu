@@ -42,9 +42,9 @@
         commit: true
         description: "Deploy OSPF Unnumbered Interfaces"
         template: |
-           - add interface {{ item }} ospf network point-to-point
+           add interface {{ item }} ospf network point-to-point
         with_items:
-                - "{{ node[inventory_hostname].routing.ospf.neighbors }}"
+          - "{{ node[inventory_hostname].routing.ospf.neighbors }}"
         when: node[inventory_hostname].routing.ospf.neighbors is defined
 
   - name: Reload Interfaces

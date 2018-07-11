@@ -3,12 +3,12 @@
   gather_facts: yes
 
   tasks:
-   - debug:
-       msg: "{{ node[inventory_hostname].ports }}"
+#   - debug:
+#       msg: "{{ node[inventory_hostname].ports }}"
 
 #   - debug:
 #       msg: "{{ hostvars[inventory_hostname].uplinks }}"
 
-#   - debug:
-#       msg: "Uplinks: {{ item }}"
-#     with_items: "{{ node[inventory_hostname]["ports"] }}"
+   - debug:
+       msg: "Uplinks: {{ item }}"
+     with_items: "{{ node[inventory_hostname].ports }}"

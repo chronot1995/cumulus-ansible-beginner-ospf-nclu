@@ -1,6 +1,6 @@
 - name: Simple Debug Script
   hosts: all
-  gather_facts: no
+  gather_facts: yes
 
   tasks:
    - debug:

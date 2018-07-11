@@ -33,7 +33,7 @@
         commit: true
         description: "Deploy OSPF Unnumbered configuration"
         commands:
-            - add loopback lo ip address {{ node[inventory_hostname].routing.lo}}
+            - add loopback lo ip address {{ node[inventory_hostname].routing.lo | replace('\32', '')}}
             - add ospf router-id {{ node[inventory_hostname].routing.lo }}
             - add ospf network {{ node[inventory_hostname].routing.lo }} area {{ node[inventory_hostname].routing.ospf.area }}
 

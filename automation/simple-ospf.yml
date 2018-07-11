@@ -43,6 +43,7 @@
         description: "Deploy OSPF Unnumbered Interfaces"
         template: |
            add interface {{ item }} ospf network point-to-point
+           add interface {{ item }} ip address {{ node[inventory_hostname].routing.lo | regex_replace('/32') }}
     with_items:
       - "{{ node[inventory_hostname].routing.ospf.neighbors }}"
     when: node[inventory_hostname].routing.ospf.neighbors is defined

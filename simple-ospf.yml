@@ -1,0 +1,34 @@
+- name: Configure OSPF Unnumbered Switches
+  hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+
+  - name: Initial Management VRF setup
+    nclu:
+      commit: true
+      description: "Initial Management VRF setup"
+      commands:
+        - add interface eth0 vrf mgmt
+
+  - name: Initial Switch setup
+    nclu:
+       commit: true
+       description: "Initial Switch setup"
+       commands:
+           - add hostname "{{ inventory_hostname }}"
+           - add interface {{ node[inventory_hostname][ports] }}
+
+  - name: Deploy OSPF Unnumbered configuration
+    nclu:
+        commit: true
+        description: "Deploy OSPF Unnumbered configuration"
+        commands:
+            - add loopback lo ip address {{ node[inventory_hostname][routing][lo]}}
+            - add interface {{ node[inventory_hostname][routing][ospf][neighbors] }} ospf network point-to-point
+            - add interface {{ node[inventory_hostname][routing][ospf][neighbors] }} ip address {{ node[inventory_hostname][routing][lo] }}
+            - add ospf router-id {{ node[inventory_hostname][routing][lo] }}
+            - add ospf network {{ node[inventory_hostname][routing][lo] }} area {{ node[inventory_hostname][routing][ospf][area] }}
+
+  - name: Reload Interfaces
+    command: ifreload -a

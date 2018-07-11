@@ -1,0 +1,23 @@
+- name: Reset all network switches
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+
+  - name: Abort Pending Configuration
+    nclu:
+        commit: true
+        description: "Abort Pending Configuration"
+        commands:
+            - abort
+
+  - name: Delete Existing Configuration
+    nclu:
+        commit: true
+        description: "Delete Existing Configuration"
+        commands:
+            - del all
+
+  - name: Reload Interfaces
+    command: ifreload -a

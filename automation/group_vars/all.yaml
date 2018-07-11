@@ -1,0 +1,62 @@
+node:
+  training-switch01:
+    overlay:
+      anycast-ip:
+      vxlan:
+        vni:
+          vlan:
+    ports:
+      swp1: {}
+      swp2: {}
+    switching:
+      interface:
+        members:
+        mode:
+        vlans:
+    routing:
+      lo: 10.1.1.1/32
+      ospf:
+        area: 0
+        neighbors:
+          - swp1
+          - swp2
+      bgp:
+        asn:
+        underlay:
+          external:
+            peers:
+          internal:
+            peers:
+      svi:
+        vlansvi:
+          ip:
+          vlan:
+  training-switch02:
+    overlay:
+      anycast-ip:
+      vxlan:
+        vni:
+          vlan:
+    ports:
+      swp1: {}
+      swp2: {}
+    switching:
+      interface:
+    routing:
+      lo: 10.2.2.2/32
+      ospf:
+        area: 0
+        neighbors:
+          - swp1
+          - swp2
+      bgp:
+        asn:
+        underlay:
+          external:
+            peers:
+          internal:
+            peers:
+      svi:
+        vlansvi:
+          ip:
+          vlan:

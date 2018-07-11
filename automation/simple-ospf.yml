@@ -41,7 +41,7 @@
     nclu:
         commit: true
         description: "Deploy OSPF Unnumbered Interfaces"
-        template: |
+        commands:
            add interface "{{ item }}" ospf network point-to-point
         with_items:
           - "{{ node[inventory_hostname].routing.ospf.neighbors }}"

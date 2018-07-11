@@ -4,5 +4,11 @@
 
   tasks:
    - debug:
-       msg: "Uplinks: {{ item }}"
-     with_items: "{{ node[inventory_hostname][ports] }}"
+       msg: "{{ node[inventory_hostname][ports] }}"
+
+#   - debug:
+#       msg: "{{ hostvars[inventory_hostname].uplinks }}"
+
+#   - debug:
+#       msg: "Uplinks: {{ item }}"
+#     with_items: "{{ node[inventory_hostname][ports] }}"

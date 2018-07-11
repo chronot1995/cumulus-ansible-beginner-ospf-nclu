@@ -6,11 +6,11 @@
 #   - debug:
 #       msg: "{{ node[inventory_hostname].ports }}"
 
-   - debug:
-       msg: "{{ node[inventory_hostname].routing.ospf.neighbors }}"
+#   - debug:
+#       msg: "{{ node[inventory_hostname].routing.ospf.neighbors }}"
 
-   - debug:
-       msg: "{{ node[inventory_hostname].routing.lo | regex_replace('/32')}}"
+#   - debug:
+#       msg: "{{ node[inventory_hostname].routing.lo | regex_replace('/32')}}"
 
    - debug:
        msg: "add interface {{ item }} ospf network point-to-point"

@@ -25,8 +25,8 @@
       template: |
          add interface "{{ item }}"
     with_items:
-      - "{{ node[inventory_hostname][ports] }}"
-#    when: node[inventory_hostname]["ports"] is defined
+      - "{{ node[inventory_hostname].ports }}"
+    when: node[inventory_hostname].ports is defined
 
 #  - name: Deploy OSPF Unnumbered configuration
 #    nclu:

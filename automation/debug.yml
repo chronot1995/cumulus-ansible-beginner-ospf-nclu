@@ -13,5 +13,5 @@
        msg: "{{ node[inventory_hostname].routing.lo | regex_replace('/32')}}"
 
    - debug:
-       msg: "Uplinks: {{ item }}"
+       msg: "add interface {{ item }} ospf network point-to-point"
      with_items: "{{ node[inventory_hostname].routing.ospf.neighbors }}"

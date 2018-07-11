@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook deploy.yaml
+ansible-playbook training-ospf-nclu.yml

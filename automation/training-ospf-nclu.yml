@@ -4,19 +4,13 @@
   gather_facts: yes
   tasks:
 
-  - name: Initial Management VRF setup
+  - name: Initial Switch Management VRF setup
     nclu:
       commit: true
       description: "Initial Management VRF setup"
       commands:
         - add interface eth0 vrf mgmt
-
-  - name: Initial Switch setup
-    nclu:
-       commit: true
-       description: "Initial Switch setup"
-       commands:
-           - add hostname "{{ inventory_hostname }}"
+        - add hostname "{{ inventory_hostname }}"
 
   - name: Deploy Interfaces
     nclu:

@@ -1,5 +1,11 @@
 node:
   switch01:
+    mlag:
+      address:
+      backup-ip:
+      members:
+      peer-ip:
+      sysmac:
     overlay:
       anycast-ip:
       vxlan:
@@ -31,7 +37,16 @@ node:
         vlansvi:
           ip:
           vlan:
+          vrrp:
+            mac:
+            ip:
   switch02:
+    mlag:
+      address:
+      backup-ip:
+      members:
+      peer-ip:
+      sysmac:
     overlay:
       anycast-ip:
       vxlan:
@@ -60,3 +75,6 @@ node:
         vlansvi:
           ip:
           vlan:
+          vrrp:
+            mac:
+            ip:

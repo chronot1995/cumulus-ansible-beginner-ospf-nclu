@@ -6,6 +6,12 @@ node:
       members:
       peer-ip:
       sysmac:
+      interfaces:
+        bond01:
+          clagid:
+          members:
+          mode:
+          vlans:
     overlay:
       anycast-ip:
       vxlan:
@@ -14,9 +20,11 @@ node:
     ports:
       - swp1
       - swp2
+    lacp:
+      interfaces:
+        members:
     switching:
       interface:
-        members:
         mode:
         vlans:
     routing:
@@ -47,6 +55,12 @@ node:
       members:
       peer-ip:
       sysmac:
+      interfaces:
+        bond01:
+          clagid:
+          members:
+          mode:
+          vlans:
     overlay:
       anycast-ip:
       vxlan:
@@ -55,8 +69,13 @@ node:
     ports:
       - swp1
       - swp2
+    lacp:
+      interfaces:
+        members:
     switching:
       interface:
+        mode:
+        vlans:
     routing:
       lo: 10.2.2.2/32
       ospf:

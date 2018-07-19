@@ -3,6 +3,7 @@
 #    https://github.com/cumulusnetworks/topology_converter
 #    using topology data
 
+[switches]
 switch01 ansible_host=192.168.200.1
 switch02 ansible_host=192.168.200.2
 

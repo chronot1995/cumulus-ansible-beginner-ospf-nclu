@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook begin-training-ospf-nclu.yml
+ansible-playbook begin-ansible-training-ospf-nclu.yml

@@ -2,9 +2,9 @@ node:
   switch01:
     mlag:
       address:
-      backup-ip:
+      backupip:
       members:
-      peer-ip:
+      peerip:
       sysmac:
       interfaces:
         bond01:
@@ -13,7 +13,7 @@ node:
           mode:
           vlans:
     overlay:
-      anycast-ip:
+      anycastip:
       vxlan:
         vni:
           vlan:
@@ -27,6 +27,7 @@ node:
       interface:
         mode:
         vlans:
+      vlans:
     routing:
       lo: 10.1.1.1/32
       ospf:
@@ -51,9 +52,9 @@ node:
   switch02:
     mlag:
       address:
-      backup-ip:
+      backupip:
       members:
-      peer-ip:
+      peerip:
       sysmac:
       interfaces:
         bond01:
@@ -62,7 +63,7 @@ node:
           mode:
           vlans:
     overlay:
-      anycast-ip:
+      anycastip:
       vxlan:
         vni:
           vlan:
@@ -76,6 +77,7 @@ node:
       interface:
         mode:
         vlans:
+      vlans:
     routing:
       lo: 10.2.2.2/32
       ospf:

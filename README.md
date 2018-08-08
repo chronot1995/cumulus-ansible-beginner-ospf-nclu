@@ -2,7 +2,7 @@
 
 ### Summary:
 
-This is an Ansible demo which configures two Cumulus VX switches with BGP using J2 / Jinja2 templates
+This is an Ansible demo which configures two Cumulus VX switches with OSPF using Ansible's NCLU module
 
 ### Network Diagram:
 
@@ -50,14 +50,14 @@ First, make sure that the following is currently running on your machine:
 
     ```./provision.sh```
 
-This will bring run the automation script and configure the two switches with BGP.
+This will bring run the automation script and configure the two switches with OSPF.
 
 ### Troubleshooting
 
 Helpful NCLU troubleshooting commands:
 
 - net show route
-- net show bgp summary
+- net show ospf neighbor
 - net show interface | grep -i UP
 - net show lldp
 
@@ -67,23 +67,14 @@ Helpful Linux troubleshooting commands:
 - ip link show
 - ip address <interface>
 
-The BGP Summary command will show if each switch had formed a neighbor relationship:
+The OSPF neighbor command will show if each switch had formed an adjacency:
 
 ```
-cumulus@switch01:mgmt-vrf:~$ net show bgp summary
+cumulus@switch01:mgmt-vrf:~$ net show ospf neighbor
 
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.1.1.1, local AS number 65111 vrf-id 0
-BGP table version 4
-RIB entries 5, using 760 bytes of memory
-Peers 2, using 39 KiB of memory
-
-Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
-switch02(swp1)  4      65222     118     118        0    0    0 00:05:38            2
-switch02(swp2)  4      65222     117     117        0    0    0 00:05:35            2
-
-Total number of neighbors 2
+Neighbor ID     Pri State           Dead Time Address         Interface            RXmtL RqstL DBsmL
+10.2.2.2          1 Full/DROther      36.952s 10.2.2.2        swp1:10.1.1.1            0     0     0
+10.2.2.2          1 Full/DROther      39.293s 10.2.2.2        swp2:10.1.1.1            0     0     0
 
 ```
 
@@ -95,15 +86,19 @@ cumulus@switch01:mgmt-vrf:~$ net show route
 show ip route
 =============
 Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, P - PIM, E - EIGRP, N - NHRP,
+       O - OSPF, I - IS-IS, B - , P - PIM, E - EIGRP, N - NHRP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel,
        > - selected route, * - FIB route
 
-K>* 0.0.0.0/0 [0/0] via 10.0.2.2, vagrant, 00:06:11
-C>* 10.0.2.0/24 is directly connected, vagrant, 00:06:11
-C>* 10.1.1.1/32 is directly connected, lo, 00:06:11
-B>* 10.2.2.2/32 [20/0] via fe80::4638:39ff:fe00:2, swp1, 00:06:02
-  *                    via fe80::4638:39ff:fe00:4, swp2, 00:06:02
+K>* 0.0.0.0/0 [0/0] via 10.0.2.2, vagrant, 00:00:20
+C>* 10.0.2.0/24 is directly connected, vagrant, 00:00:20
+C * 10.1.1.1/32 is directly connected, swp2, 00:00:14
+C * 10.1.1.1/32 is directly connected, swp1, 00:00:16
+O   10.1.1.1/32 [110/0] is directly connected, lo, 00:00:19
+C>* 10.1.1.1/32 is directly connected, lo, 00:00:20
+O>* 10.2.2.2/32 [110/100] via 10.2.2.2, swp1 onlink, 00:00:04
+  *                       via 10.2.2.2, swp2 onlink, 00:00:04
+
 ```
 
 

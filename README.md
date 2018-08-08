@@ -36,7 +36,7 @@ First, make sure that the following is currently running on your machine:
 
 1. SSH into the oob-mgmt-server:
     
-    ```cd vx-simulation```. 
+    ```cd vx-simulation```   
     ```vagrant ssh oob-mgmt-server```
 
 2. Copy the Git repo unto the oob-mgmt-server:

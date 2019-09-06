@@ -1,8 +1,8 @@
 # Created by Topology-Converter v4.7.0
 #    Template Revision: v4.7.0
 #    https://github.com/cumulusnetworks/topology_converter
-#    using topology data from: cumulus-ansible-beginner-bgp-j2.dot
-#    built with the following args: ./topology_converter.py -c cumulus-ansible-beginner-bgp-j2.dot --provider=libvirt
+#    using topology data from: cumulus-ansible-beginner-ospf-nclu.dot
+#    built with the following args: ./topology_converter.py -c cumulus-ansible-beginner-ospf-nclu.dot --provider=libvirt
 #
 #    NOTE: in order to use this Vagrantfile you will need:
 #       -Vagrant(v2.0.2+) installed: http://www.vagrantup.com/downloads
@@ -123,9 +123,9 @@ Vagrant.configure("2") do |config|
 
   ##### DEFINE VM for oob-mgmt-server #####
   config.vm.define "oob-mgmt-server" do |device|
-
+    
     device.vm.hostname = "oob-mgmt-server"
-
+    
     device.vm.box = "generic/ubuntu1804"
 
     device.vm.provider :libvirt do |v|
@@ -180,7 +180,7 @@ device.vm.provision :shell , :inline => <<-udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:06 --> eth1"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:06", NAME="eth1", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -198,9 +198,9 @@ end
 
   ##### DEFINE VM for oob-mgmt-switch #####
   config.vm.define "oob-mgmt-switch" do |device|
-
+    
     device.vm.hostname = "oob-mgmt-switch"
-
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
 
     device.vm.provider :libvirt do |v|
@@ -259,7 +259,7 @@ end
     device.vm.provision :shell , inline: "(sudo grep -q 'mesg n' /root/.profile 2>/dev/null && sudo sed -i '/mesg n/d' /root/.profile  2>/dev/null) || true;", privileged: false
 
     # Copy over Topology.dot File
-    device.vm.provision "file", source: "cumulus-ansible-beginner-bgp-j2.dot", destination: "~/topology.dot"
+    device.vm.provision "file", source: "cumulus-ansible-beginner-ospf-nclu.dot", destination: "~/topology.dot"
     device.vm.provision :shell, privileged: false, inline: "sudo mv ~/topology.dot /etc/ptm.d/topology.dot"
 
 
@@ -295,7 +295,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:09 --> swp3"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:09", NAME="swp3", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -313,9 +313,9 @@ end
 
   ##### DEFINE VM for switch01 #####
   config.vm.define "switch01" do |device|
-
+    
     device.vm.hostname = "switch01"
-
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.7.8"
 
@@ -365,7 +365,7 @@ end
     device.vm.provision :shell , inline: "(sudo grep -q 'mesg n' /root/.profile 2>/dev/null && sudo sed -i '/mesg n/d' /root/.profile  2>/dev/null) || true;", privileged: false
 
     # Copy over Topology.dot File
-    device.vm.provision "file", source: "cumulus-ansible-beginner-bgp-j2.dot", destination: "~/topology.dot"
+    device.vm.provision "file", source: "cumulus-ansible-beginner-ospf-nclu.dot", destination: "~/topology.dot"
     device.vm.provision :shell, privileged: false, inline: "sudo mv ~/topology.dot /etc/ptm.d/topology.dot"
 
 
@@ -394,7 +394,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:03 --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:03", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
@@ -412,9 +412,9 @@ end
 
   ##### DEFINE VM for switch02 #####
   config.vm.define "switch02" do |device|
-
+    
     device.vm.hostname = "switch02"
-
+    
     device.vm.box = "CumulusCommunity/cumulus-vx"
     device.vm.box_version = "3.7.8"
 
@@ -464,7 +464,7 @@ end
     device.vm.provision :shell , inline: "(sudo grep -q 'mesg n' /root/.profile 2>/dev/null && sudo sed -i '/mesg n/d' /root/.profile  2>/dev/null) || true;", privileged: false
 
     # Copy over Topology.dot File
-    device.vm.provision "file", source: "cumulus-ansible-beginner-bgp-j2.dot", destination: "~/topology.dot"
+    device.vm.provision "file", source: "cumulus-ansible-beginner-ospf-nclu.dot", destination: "~/topology.dot"
     device.vm.provision :shell, privileged: false, inline: "sudo mv ~/topology.dot /etc/ptm.d/topology.dot"
 
 
@@ -493,7 +493,7 @@ udev_rule
 echo "  INFO: Adding UDEV Rule: 44:38:39:00:00:04 --> swp2"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="44:38:39:00:00:04", NAME="swp2", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 udev_rule
-
+     
       device.vm.provision :shell , :inline => <<-vagrant_interface_rule
 echo "  INFO: Adding UDEV Rule: Vagrant interface = vagrant"
 echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{ifindex}=="2", NAME="vagrant", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules

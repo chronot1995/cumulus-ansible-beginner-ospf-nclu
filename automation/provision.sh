@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook begin-ansible-training-ospf-nclu.yml
+ansible-playbook cumulus-ansible-beginner-ospf-nclu.yml

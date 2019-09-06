@@ -44,3 +44,6 @@
 
   - name: Reload Interfaces
     command: ifreload -a
+
+  - name: Flush Handlers, best practice
+    meta: flush_handlers

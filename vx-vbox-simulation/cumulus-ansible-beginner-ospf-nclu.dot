@@ -1,0 +1,8 @@
+graph training {
+ "switch01" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.3" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.200.1"]
+ "switch02" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.5.3" memory="768" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.200.2"]
+
+ "switch01":"swp1" -- "switch02":"swp1"
+ "switch01":"swp2" -- "switch02":"swp2"
+
+ }

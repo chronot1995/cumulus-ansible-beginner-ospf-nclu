@@ -1,0 +1,8 @@
+#Created by Topology-Converter v4.7.0
+#    Template Revision: v4.7.0
+
+
+auto bridge-untagged
+iface bridge-untagged
+    address 192.168.200.3/24
+    bridge-ports swp1 swp2 swp3 

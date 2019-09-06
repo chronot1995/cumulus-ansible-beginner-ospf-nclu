@@ -1,0 +1,11 @@
+oob-mgmt-server,eth1,44:38:39:00:00:06
+oob-mgmt-switch,eth0,44:38:39:00:00:0b
+oob-mgmt-switch,swp1,44:38:39:00:00:05
+oob-mgmt-switch,swp2,44:38:39:00:00:07
+oob-mgmt-switch,swp3,44:38:39:00:00:09
+switch01,eth0,44:38:39:00:00:08
+switch01,swp1,44:38:39:00:00:01
+switch01,swp2,44:38:39:00:00:03
+switch02,eth0,44:38:39:00:00:0a
+switch02,swp1,44:38:39:00:00:02
+switch02,swp2,44:38:39:00:00:04

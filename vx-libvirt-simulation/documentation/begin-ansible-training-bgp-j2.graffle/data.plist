@@ -1027,7 +1027,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{196.95999560505203, 276.26474934365069}, {102, 30}}</string>
+					<string>{{171.95999560505203, 276.26474934365069}, {152, 30}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -1077,7 +1077,7 @@
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
-\f0\b\fs50 \cf0 Area: 0 }</string>
+\f0\b\fs50 \cf0 ASN: 65111 }</string>
 						<key>VerticalPad</key>
 						<real>0.0</real>
 					</dict>
@@ -1086,7 +1086,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{310, 657.35998530685902}, {331, 25}}</string>
+					<string>{{310, 657.35998530685902}, {300, 25}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -1138,7 +1138,7 @@
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f0\b\fs42 \cf0 begin-ansible-training-ospf-nclu}</string>
+\f0\b\fs42 \cf0 begin-ansible-training-bgp-j2}</string>
 						<key>VerticalPad</key>
 						<real>0.0</real>
 					</dict>
@@ -1589,7 +1589,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{634.71998582035349, 276.26474934365069}, {102, 30}}</string>
+					<string>{{608.21998582035349, 276.26474934365069}, {155, 30}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -1639,7 +1639,7 @@
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
-\f0\b\fs50 \cf0 Area: 0 }</string>
+\f0\b\fs50 \cf0 ASN: 65222 }</string>
 						<key>VerticalPad</key>
 						<real>0.0</real>
 					</dict>

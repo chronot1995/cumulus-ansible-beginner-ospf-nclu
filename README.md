@@ -1,51 +1,90 @@
-## begin-ansible-training-ospf-nclu
+## cumulus-ansible-beginner-ospf-nclu
 
 ### Summary:
+
+  - Cumulus Linux 3.7.8
+  - Underlying Topology Converter to 4.7.0
+  - Tested against Vagrant 2.1.5 on Mac and Linux. Windows is not supported.
+  - Tested against Virtualbox 5.2.32 on Mac 10.14
+  - Tested against Libvirt 1.3.1 and Ubuntu 16.04 LTS
+
+### Description:
 
 This is an Ansible demo which configures two Cumulus VX switches with OSPF using Ansible's NCLU module
 
 ### Network Diagram:
 
-![Network Diagram](https://github.com/chronot1995/begin-ansible-training-ospf-nclu/blob/master/documentation/begin-ansible-training-ospf-nclu.png)
+![Network Diagram](https://github.com/chronot1995/cumulus-ansible-beginner-ospf-nclu/blob/master/documentation/cumulus-ansible-beginner-ospf-nclu.png)
 
-### Initializing the demo environment:
+### Install and Setup Virtualbox on Mac
 
-First, make sure that the following is currently running on your machine:
+Setup Vagrant for the first time on Mojave, MacOS 10.14.6
 
-1. Vagrant > version 2.1.2
+1. Install Homebrew 2.1.9 (This will also install Xcode Command Line Tools)
 
-    https://www.vagrantup.com/
+    https://brew.sh
 
-2. Virtualbox > version 5.2.16
+2. Install Virtualbox (Tested with 5.2.32)
 
     https://www.virtualbox.org
 
-3. Copy the Git repo to your local machine:
+I had to go through the install process twice to load the proper security extensions (System Preferences > Security & Privacy > General Tab > "Allow" on bottom)
 
-    ```git clone https://github.com/chronot1995/begin-ansible-training-ospf-nclu```
+3. Install Vagrant (Tested with 2.1.5)
 
-4. Change directories to the following
+    https://www.vagrantup.com
 
-    ```begin-ansible-training-ospf-nclu```
+### Install and Setup Linux / libvirt demo environment:
 
-6. Run the following:
+First, make sure that the following is currently running on your machine:
 
-    ```./start-vagrant-poc.sh```
+1. This demo was tested on a Ubuntu 16.04 VM w/ 4 processors and 32Gb of Diagram
+
+2. Following the instructions at the following link:
+
+    https://docs.cumulusnetworks.com/cumulus-vx/Development-Environments/Vagrant-and-Libvirt-with-KVM-or-QEMU/
+
+3. Download the latest Vagrant, 2.1.5, from the following location:
+
+    https://www.vagrantup.com/
+
+### Initializing the demo environment:
+
+1. Copy the Git repo to your local machine:
+
+    ```git clone https://github.com/chronot1995/cumulus-ansible-beginner-ospf-nclu```
+
+2. Change directories to the following
+
+    ```cumulus-ansible-beginner-ospf-nclu```
+
+3a. Run the following for Virtualbox:
+
+    ```./start-vagrant-vbox-poc.sh```
+
+3b. Run the following for Libvirt:
+
+    ```./start-vagrant-libvirt-poc.sh```
 
 ### Running the Ansible Playbook
 
-1. SSH into the oob-mgmt-server:
-    
-    ```cd vx-simulation```   
+1a. SSH into the Virtualbox oob-mgmt-server:
+
+    ```cd vx-vbox-simulation```   
+    ```vagrant ssh oob-mgmt-server```
+
+1a. SSH into the Libvirt oob-mgmt-server:
+
+    ```cd vx-libvirt-simulation```   
     ```vagrant ssh oob-mgmt-server```
 
 2. Copy the Git repo unto the oob-mgmt-server:
 
-    ```git clone https://github.com/chronot1995/begin-ansible-training-ospf-nclu```
+    ```git clone https://github.com/chronot1995/cumulus-ansible-beginner-ospf-nclu```
 
 3. Change directories to the following
 
-    ```begin-ansible-training-ospf-nclu/automation```
+    ```cumulus-ansible-beginner-ospf-nclu/automation```
 
 4. Run the following:
 
@@ -102,8 +141,6 @@ O>* 10.2.2.2/32 [110/100] via 10.2.2.2, swp1 onlink, 00:00:04
 
 ```
 
-
-
 ### Errata
 
 1. To shutdown the demo, run the following command from the vx-simulation directory:
@@ -116,42 +153,43 @@ O>* 10.2.2.2/32 [110/100] via 10.2.2.2, swp1 onlink, 00:00:04
 
 3. The following command was used to run the Topology Converter within the vx-simulation directory:
 
-    ```python2 topology_converter.py begin-ansible-training-ospf-nclu.dot -c```
+    ```./topology_converter.py cumulus-ansible-beginner-bgp-j2.dot -c```
 
-    After the above command is executed, the following configuration changes are necessary:
+After the above command is executed, the following configuration changes are necessary:
 
 4. Within ```vx-simulation/helper_scripts/auto_mgmt_network/OOB_Server_Config_auto_mgmt.sh```
+
+The following stanza:
+
+echo " ### Creating cumulus user ###"
+useradd -m cumulus
+
+Will be replaced with the following:
+
+echo " ### Creating cumulus user ###"
+useradd -m cumulus -m -s /bin/bash
 
 The following stanza:
 
     #Install Automation Tools
     puppet=0
     ansible=1
-    ansible_version=2.3.1.0
+    ansible_version=2.6.3
 
 Will be replaced with the following:
 
     #Install Automation Tools
     puppet=0
     ansible=1
-    ansible_version=2.6.2
-
-The following stanza will replace the install_ansible function:
-
-```
-install_ansible(){
-echo " ### Installing Ansible... ###"
-apt-get install -qy ansible sshpass libssh-dev python-dev libssl-dev libffi-dev
-sudo pip install pip --upgrade
-sudo pip install setuptools --upgrade
-sudo pip install ansible==$ansible_version --upgrade
-}```
+    ansible_version=2.8.4
 
 Add the following ```echo``` right before the end of the file.
 
     echo " ### Adding .bash_profile to auto login as cumulus user"
     echo "sudo su - cumulus" >> /home/vagrant/.bash_profile
     echo "exit" >> /home/vagrant/.bash_profile
+    echo "### Adding .ssh_config to avoid HostKeyChecking"
+    printf "Host * \n\t StrictHostKeyChecking no\n" >> /home/cumulus/.ssh/config
 
     echo "############################################"
     echo "      DONE!"

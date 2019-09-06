@@ -1,0 +1,4 @@
+setuptools
+jinja2
+pydotplus
+ipaddress

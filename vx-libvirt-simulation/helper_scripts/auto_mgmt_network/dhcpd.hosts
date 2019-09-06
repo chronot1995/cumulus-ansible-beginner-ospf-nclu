@@ -1,0 +1,22 @@
+# /etc/dhcp/dhcpd.hosts
+# Created by Topology-Converter v4.7.0
+#    Template Revision: v4.7.0
+#    https://github.com/cumulusnetworks/topology_converter
+#    using topology data from: cumulus-ansible-beginner-bgp-j2.dot
+
+group {
+
+  option domain-name-servers 192.168.200.254;
+  option domain-name "simulation";
+  #option routers 192.168.200.254;
+  option www-server 192.168.200.254;
+  option default-url = "http://192.168.200.254/onie-installer";
+
+
+host oob-mgmt-switch {hardware ethernet 44:38:39:00:00:0b; fixed-address 192.168.200.3; option host-name "oob-mgmt-switch"; option cumulus-provision-url "http://192.168.200.254/ztp_oob.sh";  } 
+
+host switch01 {hardware ethernet 44:38:39:00:00:08; fixed-address 192.168.200.1; option host-name "switch01"; option cumulus-provision-url "http://192.168.200.254/ztp_oob.sh";  } 
+
+host switch02 {hardware ethernet 44:38:39:00:00:0a; fixed-address 192.168.200.2; option host-name "switch02"; option cumulus-provision-url "http://192.168.200.254/ztp_oob.sh";  } 
+}#End of static host group
+

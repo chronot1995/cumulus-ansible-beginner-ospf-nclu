@@ -1,0 +1,19 @@
+# Created by Topology-Converter v4.7.0
+#    Template Revision: v4.7.0
+
+
+127.0.0.1 localhost 
+127.0.1.1 oob-mgmt-server
+
+192.168.200.254 oob-mgmt-server
+
+
+192.168.200.3 oob-mgmt-switch
+192.168.200.1 switch01
+192.168.200.2 switch02
+
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

@@ -2,7 +2,7 @@
 # Created by Topology-Converter v4.7.0
 #    Template Revision: v4.7.0
 #    https://github.com/cumulusnetworks/topology_converter
-#    using topology data from: cumulus-ansible-beginner-bgp-j2.dot
+#    using topology data from: cumulus-ansible-beginner-ospf-nclu.dot
 
 echo "################################################"
 echo "  Running Automatic Management Server Setup..."
@@ -15,8 +15,8 @@ echo " Detected vagrant user is: $username"
 #       KNOBS
 #######################
 
-REPOSITORY="https://github.com/CumulusNetworks/cumulus-ansible-beginner-bgp-j2"
-REPONAME="cumulus-ansible-beginner-bgp-j2"
+REPOSITORY="https://github.com/CumulusNetworks/cumulus-ansible-beginner-ospf-nclu"
+REPONAME="cumulus-ansible-beginner-ospf-nclu"
 
 #Install Automation Tools
 puppet=0

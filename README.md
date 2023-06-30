@@ -1,5 +1,7 @@
 ## cumulus-ansible-beginner-ospf-nclu
 
+### DEPRECATED - Please check out Nvidia Air at https://air.nvidia.com for up-to-date examples
+
 ### Summary:
 
   - Cumulus Linux 3.7.8
